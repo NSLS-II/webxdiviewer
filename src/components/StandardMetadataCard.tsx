@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { XASStandard } from "../models";
 import {
   Card,
@@ -5,6 +6,7 @@ import {
   Typography,
   CardActions,
   Link,
+  Stack,
 } from "@mui/material";
 
 function StandardMetadataCard(props: {
@@ -36,12 +38,18 @@ function StandardMetadataCard(props: {
       </CardContent>
       {props.showDownload && (
         <CardActions>
-          <Link
-            href={"/webxdiviewer/xdidata/" + String(standard.location)}
-            download={String(standard.id) + ".xdi"}
-          >
-            Download
-          </Link>
+          <Stack>
+            <Link
+              href={"/webxdiviewer/xdidata/" + String(standard.location)}
+              download={String(standard.id) + ".xdi"}
+            >
+              Download XDI
+            </Link>
+
+            <Link component={NavLink} to={"/xdi/" + String(standard.location)}>
+              Persistent Link
+            </Link>
+          </Stack>
         </CardActions>
       )}
     </Card>

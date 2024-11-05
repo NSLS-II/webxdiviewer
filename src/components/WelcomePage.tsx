@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { Container, Typography, Box } from "@mui/material";
 
+const env_repo_location = import.meta.env.VITE_XDI_REPO_LOCATION;
+
 function WelcomePage() {
+  const repo_location = env_repo_location ?? "examplerepo/xdifiles";
+
   return (
     <Container maxWidth="md" sx={{ alignSelf: "center", p: "24px" }}>
       <Typography variant="h4" padding="24px">
@@ -16,9 +20,9 @@ function WelcomePage() {
           stored in a github repository. As part of the website build process,
           the XDI files are pulled in and indexed, giving simple static website
           to display open data. The website is currently pointing as a fork of
-          the data in the{" "}
-          <Link to={"https://github.com/XraySpectroscopy/XASDataLibrary"}>
-            XASDataLibrary
+          the data in{" "}
+          <Link to={"https://github.com/" + repo_location}>
+            {repo_location}
           </Link>
           .
         </Typography>
